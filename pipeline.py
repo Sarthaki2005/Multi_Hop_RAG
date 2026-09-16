@@ -66,7 +66,7 @@ class IngestionPipeline:
     def export_to_jsonl(self, chunks: List[Dict[str, Any]], output_path: str | Path) -> None:
         out_file = Path(output_path)
         out_file.parent.mkdir(parents=True, exist_ok=True)
-        with open(out_file, "w", encoding="utf-8") as f:
+        with open(out_file, "a", encoding="utf-8") as f:
             for chunk in chunks:
                 f.write(json.dumps(chunk, ensure_ascii=False) + "\n")
         logger.info(f"✓ Saved {len(chunks)} chunks to {out_file.resolve()}")
